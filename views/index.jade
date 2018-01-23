@@ -1,5 +1,5 @@
- extends layout
- block content
+extends layout
+block content
     h1 #{title}
     br
  
@@ -8,6 +8,7 @@
         tr
           td Name
           td Category
+          td Priority
           td Date
           td Complete
         if (typeof tasks === "undefined")
@@ -18,6 +19,7 @@
             tr
               td #{task.name}
               td #{task.category}
+              td #{task.priority}
               - var date  = new Date(task.date);
               - var day   = date.getDate();
               - var month = date.getMonth() + 1;
@@ -34,5 +36,8 @@
       .form-group
         label(for="category") Item Category:
         input.form-control(name="category", type="textbox")
+      .form-group
+        label(for="priority") Item Priority:
+        input.form-control(name="priority", type="textbox")
       br
       button.btn(type="submit") Add item
