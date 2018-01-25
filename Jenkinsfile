@@ -7,6 +7,11 @@ node {
     sh 'az cloud set --name AzureUSGovernment'   
     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
     }
+
+    stage('Checkout'){
+
+        checkout scm
+    }
    
    stage('development deploy')
    {
