@@ -12,13 +12,12 @@ node('master') {
         checkout scm
     }
    
-   stage('development deploy')
+   stage('Deploy')
    {
        input 'Do you approve dev deployment?'
        echo "Gained Approval for Test Deploy"
-       azureWebAppPublish appName: 'hd-todo-webapp', azureCredentialsId: 'mag-svp', filePath: '**/*', publishType: 'file', resourceGroup: 'hd-todo-webapp', slotName: 'dev', sourceDirectory: '.', targetDirectory: '.'
-       sleep 30
-       def devhostname = sh(script: 'az webapp deployment slot list -n hd-todo-webapp -g hd-todo-webapp --query [].defaultHostName | grep dev | cut -d \"\\"\" -f 2', returnStdout: true)
+       azureWebAppPublish appName: 'asp-tech-summit-webapp', azureCredentialsId: 'mag-svp', filePath: '**/*', publishType: 'file', resourceGroup: 'asp-tech-summit-hd', slotName: 'dev', sourceDirectory: '.', targetDirectory: '.'
+       def devhostname = sh(script: 'az webapp deployment slot list -n asp-tech-summit-webapp -g asp-tech-summit-hd --query [].defaultHostName | grep dev | cut -d \"\\"\" -f 2', returnStdout: true)
        echo "Go to https://${devhostname} to verify deployment"
    }
    
