@@ -23,7 +23,7 @@ TaskList.prototype = {
       }
 
       res.render('index', {
-        title: 'My ToDo List ',
+        title: 'My TechSummit ToDo List ',
         tasks: items
       });
     });
