@@ -1,14 +1,13 @@
 #!groovy​
 
-node {
-   echo 'Hello World'
+node('linuxbuildagent') {
    
    withCredentials([azureServicePrincipal('mag-svp')]) {
     sh 'az cloud set --name AzureUSGovernment'   
     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
     }
 
-    stage('Checkout'){
+    stage('Checkout & Build'){
 
         checkout scm
     }
@@ -47,5 +46,4 @@ node {
    }
    
     sh 'az logout'
-
 }
