@@ -1,6 +1,6 @@
 #!groovy​
 
-node('linuxbuildagent') {
+node('master') {
    
    withCredentials([azureServicePrincipal('mag-svp')]) {
     sh 'az cloud set --name AzureUSGovernment'   
