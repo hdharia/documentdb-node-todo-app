@@ -26,7 +26,7 @@ node('master') {
    {
        input 'Do you approve production deployment?'
        echo "Gained Approval for production Deploy"
-       sh 'az webapp deployment slot swap -g asp-tech-summit-hd -n asp-tech-summit-webapp -s dev --target-slot production'
+       azureWebAppPublish appName: 'asp-tech-summit-webapp', azureCredentialsId: 'mag-svp', filePath: '**/*', publishType: 'file', resourceGroup: 'asp-tech-summit-hd', sourceDirectory: '.', targetDirectory: '.'
        sleep 30
        def hostname = sh(script: 'az webapp deployment slot list -n asp-tech-summit-webapp -g asp-tech-summit-hd --query [].defaultHostName | cut -d \"\\"\" -f 2', returnStdout: true)
        echo "Go to https://${hostname} to verify deployment"
